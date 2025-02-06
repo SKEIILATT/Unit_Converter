@@ -3,9 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Conversor de Unidades</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <header class="header_page">
+        <h1>Conversor de Unidades</h1>
+        <nav class="nav_bar">
+            <ul class="options_ul">
+                <li style="order: 1">Cambiar a idioma inglés</li>
+                <li style="order: 2">Modo Oscuro</li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main_section">
+        <section class="section_tipo">
+            <label for="Tipo"> Elige lo que quieres convertir</label>
+            <select>
+                <option value="Longitud" >Longitud</option>
+                <option value="Temperatura">Temperatura</option>
+                <option value="Peso/Masa">Peso/Masa</option>
+                <option value="Tiempo">Tiempo</option>
+                <option value="Velocidad">Velocidad</option>
+                <option value="Volumen">Volumen</option>
+                <option value="Area">Área</option>
+                <option value="Energia">Energía</option>
+                <option value="Area de Superficie">Área de superficie</option>
+                <option value="Moneda">Moneda</option>
+            </select>
+        </section>
+        <section>
+            <label for="digitar"> Escribe la cantidad a convertir</label>
+            <input type="number">
+        </section>
+        <section>
+            <label for="Tipo"> Elige la unidad de origen</label>
+            <select></select>
+        </section>
+        <section>
+            <label for="Tipo"> Elige la unidad de destino</label>
+            <select></select>
+        </section>
+        <section>
+            <button>Convertir</button>
+        </section>
+    </main>
+    <footer>
+        <p> Desarrollado por Javier Gutiérrez ©</p>
+    </footer>
 </body>
 </html>
