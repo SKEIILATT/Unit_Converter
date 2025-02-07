@@ -8,48 +8,54 @@
 </head>
 <body>
     <header class="header_page">
-        <h1>Conversor de Unidades</h1>
+        <h1 id="titulo">Conversor de Unidades</h1>
         <nav class="nav_bar">
             <ul class="options_ul">
-                <li style="order: 1">Cambiar a idioma inglés</li>
-                <li style="order: 2">Modo Oscuro</li>
+                <button id="cambiar_idioma"> Cambiar a Ingles </a>
+                <button id="cambiar_modo">Modo Oscuro</a>
             </ul>
         </nav>
     </header>
     <main class="main_section">
         <section class="section_tipo">
-            <label for="Tipo"> Elige lo que quieres convertir</label>
-            <select>
-                <option value="Longitud" >Longitud</option>
-                <option value="Temperatura">Temperatura</option>
-                <option value="Peso/Masa">Peso/Masa</option>
-                <option value="Tiempo">Tiempo</option>
-                <option value="Velocidad">Velocidad</option>
-                <option value="Volumen">Volumen</option>
-                <option value="Area">Área</option>
-                <option value="Energia">Energía</option>
-                <option value="Area de Superficie">Área de superficie</option>
-                <option value="Moneda">Moneda</option>
+            <label for="Tipo" id="label_tipo"> Elige lo que quieres convertir</label>
+            <select id="tipo_conversion">
+                <option value="Longitud" id="Longitud">Longitud</option>
+                <option value="Temperatura" id="Temperatura">Temperatura</option>
+                <option value="Peso/Masa" id="Peso/Masa">Peso/Masa</option>
+                <option value="Tiempo" id="Tiempo">Tiempo</option>
+                <option value="Velocidad" id="Velocidad">Velocidad</option>
+                <option value="Volumen" id="Volumen">Volumen</option>
+                <option value="Área" id="Área">Área</option>
+                <option value="Energía" id="Energía">Energía</option>
             </select>
         </section>
         <section>
-            <label for="digitar"> Escribe la cantidad a convertir</label>
-            <input type="number">
+            <label for="digitar" id="label_cantidad"> Escribe la cantidad a convertir</label>
+            <input type="number" id="valor">
         </section>
         <section>
-            <label for="Tipo"> Elige la unidad de origen</label>
-            <select></select>
+            <label for="Tipo" id="label_origen"> Elige la unidad de origen</label>
+            <select id="selectOrigen">
+            </select>
         </section>
         <section>
-            <label for="Tipo"> Elige la unidad de destino</label>
-            <select></select>
+            <label for="Tipo" id="label_destino"> Elige la unidad de destino</label>
+            <select id="selectDestino">
+                
+            </select>
         </section>
         <section>
-            <button>Convertir</button>
+            <button id="convertir">Convertir</button>
+        </section>
+        <section>
+            <p id="resultado"> Resultado: </p>
         </section>
     </main>
-    <footer>
-        <p> Desarrollado por Javier Gutiérrez ©</p>
+    <footer id="footer_page">
+        <p id="info"> © 2025 Conversor de unidades. Todos los derechos reservados</p>
+        <a href=https://github.com/SKEIILATT id="link">Acerca de Mi</a>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>

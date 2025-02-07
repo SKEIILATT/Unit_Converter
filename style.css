@@ -49,3 +49,9 @@ section{
     flex-direction: column;
     margin: 10px;
 }
+#footer_page{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
