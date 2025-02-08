@@ -67,6 +67,109 @@ document.getElementById("cambiar_idioma").addEventListener("click", function(eve
     }
 });
 
+//Evento para el modo oscuro
+let boton_modo = document.getElementById("cambiar_modo");
+boton_modo.addEventListener("click", cambiarModo);
+
+function cambiarModo() {
+    if (boton_modo.textContent === "Modo Oscuro") {
+        // Modo Oscuro
+        boton_modo.textContent = "Modo Claro";
+        
+        // Cambios header
+        let header_color = document.querySelector("header");
+        header_color.style.background = "#1e293b"; // Fondo oscuro del header
+        let titulo_color = document.getElementById("titulo");
+        titulo_color.style.color = "#e2e8f0"; // Título claro
+
+        // Cambios body
+        let body_color = document.querySelector("body");
+        body_color.style.background = "#0f172a"; // Fondo oscuro
+
+        // Cambios main
+        let main_color = document.querySelector("main");
+        main_color.style.background = "#1e293b"; // Fondo oscuro del main
+        main_color.style.boxShadow = "none"; // Sin sombra en modo oscuro
+
+        // Cambios en los labels
+        const colores_label = document.querySelectorAll("#label_tipo,#label_origen,#label_destino,#label_cantidad");
+        colores_label.forEach(label => {
+            label.style.color = "#94a3b8"; // Color de los labels en modo oscuro
+        });
+
+        // Cambios en los selects
+        const colores_select = document.querySelectorAll("#tipo_conversion,#selectOrigen,#selectDestino,#valor");
+        colores_select.forEach(select => {
+            select.style.backgroundColor = "#1e293b"; // Fondo oscuro de los selects
+            select.style.color = "white"; // Texto claro
+
+            let opciones = select.querySelectorAll("option");
+            opciones.forEach(option=>{
+                option.style.backgroundColor = "#1e293b";
+                option.style.color="white";
+            })
+        });
+
+
+        // Cambios footer
+        let footer_color = document.getElementById("footer_page");
+        let footer_p = document.getElementById("info");
+        let footer_link = document.getElementById("link");
+        footer_color.style.boxShadow = "none"; // Sin sombra en footer
+        footer_color.style.backgroundColor = "#1e293b"; // Fondo oscuro del footer
+        footer_p.style.color = "#e2e8f0"; // Texto claro en footer
+        footer_link.style.color = "#e2e8f0"; // Enlaces claros en footer
+
+    } else {
+        // Modo Claro
+        boton_modo.textContent = "Modo Oscuro";
+
+        // Cambios header
+        let header_color = document.querySelector("header");
+        header_color.style.background = "white"; // Fondo blanco del header
+        let titulo_color = document.getElementById("titulo");
+        titulo_color.style.color = "#000000"; // Título oscuro
+
+        // Cambios body
+        let body_color = document.querySelector("body");
+        body_color.style.background = "#eeeeec"; // Fondo claro
+
+        // Cambios main
+        let main_color = document.querySelector("main");
+        main_color.style.background = "white"; // Fondo blanco del main
+        main_color.style.boxShadow = "20px 20px 10px rgb(221, 208, 208)"; // Sombra en el main
+
+        // Cambios en los labels
+        const colores_label = document.querySelectorAll("#label_tipo,#label_origen,#label_destino,#label_cantidad");
+        colores_label.forEach(label => {
+            label.style.color = "#000000"; // Color oscuro en los labels
+        });
+
+        // Cambios en los selects
+        const colores_select = document.querySelectorAll("#tipo_conversion,#selectOrigen,#selectDestino,#valor");
+        colores_select.forEach(select => {
+            select.style.backgroundColor = "white"; // Fondo blanco de los selects
+            select.style.color = "#000000"; // Texto oscuro
+
+            let opciones = select.querySelectorAll("option");
+            opciones.forEach(option=>{
+                option.style.backgroundColor = "white";
+                option.style.color="black";
+            })
+        });
+
+        // Cambios footer
+        let footer_color = document.getElementById("footer_page");
+        let footer_p = document.getElementById("info");
+        let footer_link = document.getElementById("link");
+        footer_color.style.boxShadow = "20px 20px 10px rgb(221, 208, 208)"; // Sombra en footer
+        footer_color.style.backgroundColor = "white"; // Fondo blanco del footer
+        footer_p.style.color = "#000000"; // Texto oscuro en footer
+        footer_link.style.color = "#000000"; // Enlaces oscuros en footer
+    }
+}
+
+
 
 //Eventos para cuando el usuario haga click
 document.getElementById("tipo_conversion").addEventListener("change",actualizarConversion);
@@ -302,6 +405,7 @@ function actualizarConversion() {
         unidad_destino.appendChild(optionElementDestino);
     });
 }
+
 
 
 

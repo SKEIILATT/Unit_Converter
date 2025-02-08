@@ -11,14 +11,14 @@
         <h1 id="titulo">Conversor de Unidades</h1>
         <nav class="nav_bar">
             <ul class="options_ul">
-                <button id="cambiar_idioma"> Cambiar a Ingles </a>
+                <button id="cambiar_idioma"> Cambiar a Inglés </a>
                 <button id="cambiar_modo">Modo Oscuro</a>
             </ul>
         </nav>
     </header>
     <main class="main_section">
         <section class="section_tipo">
-            <label for="Tipo" id="label_tipo"> Elige lo que quieres convertir</label>
+            <label for="Tipo" id="label_tipo"> Elige lo que quieres convertir </label>
             <select id="tipo_conversion">
                 <option value="Longitud" id="Longitud">Longitud</option>
                 <option value="Temperatura" id="Temperatura">Temperatura</option>
@@ -30,26 +30,32 @@
                 <option value="Energía" id="Energía">Energía</option>
             </select>
         </section>
-        <section>
-            <label for="digitar" id="label_cantidad"> Escribe la cantidad a convertir</label>
+        <section class="unidades_od">
+            <div class="contenedor-selects">
+                <div class="select-group">
+                    <label for="Tipo" id="label_origen"> Elige la unidad de origen </label>
+                    <select id="selectOrigen"></select>
+                </div>
+                <div class="select-group">
+                    <label for="Tipo" id="label_destino"> Elige la unidad de destino </label>
+                    <select id="selectDestino"></select>
+                </div> 
+            </div>
+        </section>
+        <section class="cantidad_convertir">
+            <label for="digitar" id="label_cantidad"> Escribe la cantidad a convertir </label>
             <input type="number" id="valor">
         </section>
         <section>
-            <label for="Tipo" id="label_origen"> Elige la unidad de origen</label>
-            <select id="selectOrigen">
-            </select>
+            <div class="div_button">
+                <button id="convertir">Convertir</button>
+            </div>
         </section>
         <section>
-            <label for="Tipo" id="label_destino"> Elige la unidad de destino</label>
-            <select id="selectDestino">
-                
-            </select>
-        </section>
-        <section>
-            <button id="convertir">Convertir</button>
-        </section>
-        <section>
-            <p id="resultado"> Resultado: </p>
+            <div class="div_resultado">
+                <p id="resultado"> Resultado: </p>
+            </div>
+            
         </section>
     </main>
     <footer id="footer_page">
@@ -59,3 +65,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
