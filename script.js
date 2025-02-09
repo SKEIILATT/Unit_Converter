@@ -35,14 +35,14 @@ document.getElementById("cambiar_idioma").addEventListener("click", function(eve
         link.textContent = "About Me";
         cambiarIdioma.textContent = "Change to Spanish";
         cambiarModo.textContent = "Dark Mode";
-        tipo_longitud.textContent = "Length"
-        tipo_temperatura.textContent = "Temperature"
-        tipo_pm.textContent = "Weight/Mass"
-        tipo_tiempo.textContent = "Time"
+        tipo_longitud.textContent = "Length";
+        tipo_temperatura.textContent = "Temperature";
+        tipo_pm.textContent = "Weight/Mass";
+        tipo_tiempo.textContent = "Time";
         tipo_velocidad.textContent = "Speed"
-        tipo_volume.textContent = "Volume"
+        tipo_volumen.textContent = "Volume";
         tipo_area.textContent = "Area";
-        tipo_energia.textContent = "Energy"
+        tipo_energia.textContent = "Energy";
     } else {
         // Cambiar a español
         titulo.textContent = "Conversor de Unidades";
@@ -56,14 +56,14 @@ document.getElementById("cambiar_idioma").addEventListener("click", function(eve
         link.textContent = "Acerca de Mí";
         cambiarIdioma.textContent = "Cambiar a Inglés";
         cambiarModo.textContent = "Modo Oscuro";
-        tipo_longitud.textContent = "Longitud"
-        tipo_temperatura.textContent = "Temperatura"
-        tipo_pm.textContent = "Peso/Masa"
-        tipo_tiempo.textContent = "Tiempo"
-        tipo_velocidad.textContent = "Velocidad"
-        tipo_volume.textContent = "Volumen"
+        tipo_longitud.textContent = "Longitud";
+        tipo_temperatura.textContent = "Temperatura";
+        tipo_pm.textContent = "Peso/Masa";
+        tipo_tiempo.textContent = "Tiempo";
+        tipo_velocidad.textContent = "Velocidad";
+        tipo_volumen.textContent = "Volumen";
         tipo_area.textContent = "Área";
-        tipo_energia.textContent = "Energía"
+        tipo_energia.textContent = "Energía";
     }
 });
 
@@ -222,24 +222,12 @@ function actualizarConversion() {
         }
     }
     else if (tipo === "Temperatura") {
-        if (cambiarIdioma.textContent === "Change to Spanish") {
             opciones = [
                 { nombre: "Celsius", valor: "C" },
                 { nombre: "Fahrenheit", valor: "F" },
-                { nombre: "Kelvin", valor: "K" },
-                { nombre: "Rankine", valor: "R" },
-                { nombre: "Réaumur", valor: "Re" }
+                { nombre: "Kelvin", valor: "K" }
             ];
-        } else {
-            opciones = [
-                { nombre: "Celsius", valor: "C" },
-                { nombre: "Fahrenheit", valor: "F" },
-                { nombre: "Kelvin", valor: "K" },
-                { nombre: "Rankine", valor: "R" },
-                { nombre: "Réaumur", valor: "Re" }
-            ];
-        }
-    }
+        } 
     else if (tipo === "Peso/Masa") {
         if (cambiarIdioma.textContent === "Change to Spanish") {
             opciones = [
@@ -405,6 +393,293 @@ function actualizarConversion() {
         unidad_destino.appendChild(optionElementDestino);
     });
 }
+
+//Proceso de conversiones
+document.getElementById("convertir").addEventListener("click",convertir);
+
+function convertir(){
+    const tipo = document.getElementById("tipo_conversion").value;
+    if(tipo==="Longitud" || tipo==="Lenght"){
+        convertirLongitud();
+    }
+    else if(tipo==="Temperatura" || tipo==="Temperature"){
+        convertirTemperatura();
+    }
+    else if(tipo==="Peso/Masa" || tipo==="Weight/Mass"){
+        convertirPesoMasa();
+    }
+    else if(tipo==="Tiempo" || tipo==="Time"){
+        convertirTiempo();
+    }
+    else if(tipo==="Velocidad" || tipo==="Speed"){
+        convertirVelocidad();
+    }
+    else if(tipo==="Volumen" || tipo==="Volume"){
+        convertirVolumen();
+    }
+    else if(tipo==="Área" || tipo==="Area"){
+        convertirArea();
+    }
+    else if(tipo==="Energía" || tipo==="Energy"){
+        convertirEnergia();
+    }
+
+}
+
+function convertirLongitud() {
+    const origen = document.getElementById("selectOrigen").value;
+    const destino = document.getElementById("selectDestino").value;
+    const valor = parseFloat(document.getElementById("valor").value);
+    const resultadoDiv = document.getElementById("resultado");
+
+    if (isNaN(valor)) {
+        resultadoDiv.textContent = "Ingrese un valor válido.";
+        return;
+    }
+    const conversiones = {
+        mm: 0.001,
+        cm: 0.01,
+        m: 1,
+        km: 1000,
+        "µm": 0.000001,
+        nm: 0.000000001,
+        in: 0.0254,
+        ft: 0.3048,
+        yd: 0.9144,
+        mi: 1609.34
+    };
+
+    if (!(origen in conversiones) || !(destino in conversiones)) {
+        resultadoDiv.textContent = "Unidades no válidas.";
+        return;
+    }
+
+    let resultado = (valor * conversiones[origen]) / conversiones[destino];
+    resultadoDiv.textContent = `Resultado: ${resultado} ${destino}`;
+}
+
+function convertirTemperatura(){
+    const origen = document.getElementById("selectOrigen").value;
+    const destino = document.getElementById("selectDestino").value;
+    const valor = parseFloat(document.getElementById("valor").value);
+    const resultadoDiv = document.getElementById("resultado");
+    
+    if (isNaN(valor)) {
+        resultadoDiv.textContent = "Ingrese un valor válido.";
+        return;
+    }
+    let resultado;
+    
+    if (origen === "C" && destino === "F") {
+        resultado = (valor * 9/5) + 32;
+    } else if (origen === "C" && destino === "K") {
+        resultado = valor + 273.15;
+    } else if (origen === "F" && destino === "C") {
+        resultado = (valor - 32) * 5/9;
+    } else if (origen === "F" && destino === "K") {
+        resultado = (valor - 32) * 5/9 + 273.15;
+    } else if (origen === "K" && destino === "C") {
+        resultado = valor - 273.15;
+    } else if (origen === "K" && destino === "F") {
+        resultado = (valor - 273.15) * 9/5 + 32;
+    } else {
+        resultadoDiv.textContent = "Unidades no válidas.";
+        return;
+    }
+    resultadoDiv.textContent = `Resultado: ${resultado} ${destino}`;
+
+}
+function convertirPesoMasa() {
+    const origen = document.getElementById("selectOrigen").value;
+    const destino = document.getElementById("selectDestino").value;
+    const valor = parseFloat(document.getElementById("valor").value);
+    const resultadoDiv = document.getElementById("resultado");
+
+    if (isNaN(valor)) {
+        resultadoDiv.textContent = "Ingrese un valor válido.";
+        return;
+    }
+
+    const conversiones = {
+        "µg": 0.000001,
+        mg: 0.001,
+        g: 1,
+        kg: 1000,
+        t: 1000000,
+        oz: 28.3495,
+        lb: 453.592,
+        st: 6350.29,
+        ct: 0.2,
+        slug: 14593.9
+    };
+
+    if (!(origen in conversiones) || !(destino in conversiones)) {
+        resultadoDiv.textContent = "Unidades no válidas.";
+        return;
+    }
+
+    let resultado = (valor * conversiones[origen]) / conversiones[destino];
+    resultadoDiv.textContent = `Resultado: ${resultado} ${destino}`;
+}
+function convertirTiempo() {
+    const origen = document.getElementById("selectOrigen").value;
+    const destino = document.getElementById("selectDestino").value;
+    const valor = parseFloat(document.getElementById("valor").value);
+    const resultadoDiv = document.getElementById("resultado");
+
+    if (isNaN(valor)) {
+        resultadoDiv.textContent = "Ingrese un valor válido.";
+        return;
+    }
+
+    const conversiones = {
+        "s": 1,               // Segundo
+        "min": 60,            // Minuto
+        "h": 3600,            // Hora
+        "d": 86400,           // Día
+        "µs": 0.000001,       // Milisegundo
+        "ns": 0.000000001     // Nanosegundo
+    };
+
+    if (!(origen in conversiones) || !(destino in conversiones)) {
+        resultadoDiv.textContent = "Unidades no válidas.";
+        return;
+    }
+
+    let resultado = (valor * conversiones[origen]) / conversiones[destino];
+    resultadoDiv.textContent = `Resultado: ${resultado} ${destino}`;
+}
+
+function convertirVelocidad() {
+    const origen = document.getElementById("selectOrigen").value;
+    const destino = document.getElementById("selectDestino").value;
+    const valor = parseFloat(document.getElementById("valor").value);
+    const resultadoDiv = document.getElementById("resultado");
+
+    if (isNaN(valor)) {
+        resultadoDiv.textContent = "Ingrese un valor válido.";
+        return;
+    }
+
+    const conversiones = {
+        "m/s": 1,               // Metros por segundo
+        "km/h": 1 / 3.6,        // Kilómetros por hora a metros por segundo
+        "mph": 0.44704,         // Millas por hora a metros por segundo
+        "ft/s": 0.3048,         // Pies por segundo a metros por segundo
+        "c": 299792458          // Velocidad de la luz en metros por segundo
+    };
+
+    if (!(origen in conversiones) || !(destino in conversiones)) {
+        resultadoDiv.textContent = "Unidades no válidas.";
+        return;
+    }
+
+    // Convertir valor de la unidad de origen a metros por segundo y luego convertir a la unidad destino
+    let resultado = (valor * conversiones[origen]) / conversiones[destino];
+    resultadoDiv.textContent = `Resultado: ${resultado} ${destino}`;
+}
+function convertirVolumen() {
+    const origen = document.getElementById("selectOrigen").value;
+    const destino = document.getElementById("selectDestino").value;
+    const valor = parseFloat(document.getElementById("valor").value);
+    const resultadoDiv = document.getElementById("resultado");
+
+    if (isNaN(valor)) {
+        resultadoDiv.textContent = "Ingrese un valor válido.";
+        return;
+    }
+    //convertimos en base al mililitro
+    const conversiones = {
+        "mL": 1,                // Mililitro
+        "cm³": 1,               // Centímetro cúbico
+        "L": 1000,              // Litro
+        "m³": 1000000,          // Metro cúbico
+        "oz fl": 29.5735,       // Onza líquida
+        "cup": 240,             // Taza
+        "gal": 3785.41,         // Galón
+        "ft³": 28316.8,         // Pie cúbico
+        "yd³": 764600           // Yarda cúbica
+    };
+
+    if (!(origen in conversiones) || !(destino in conversiones)) {
+        resultadoDiv.textContent = "Unidades no válidas.";
+        return;
+    }
+
+    // Convertir valor de la unidad de origen a mililitros y luego convertir a la unidad destino
+    let resultado = (valor * conversiones[origen]) / conversiones[destino];
+    resultadoDiv.textContent = `Resultado: ${resultado} ${destino}`;
+}
+
+function convertirArea() {
+    const origen = document.getElementById("selectOrigen").value;
+    const destino = document.getElementById("selectDestino").value;
+    const valor = parseFloat(document.getElementById("valor").value);
+    const resultadoDiv = document.getElementById("resultado");
+
+    if (isNaN(valor)) {
+        resultadoDiv.textContent = "Ingrese un valor válido.";
+        return;
+    }
+    const conversiones = {
+        "mm²": 1,                 // Milímetro cuadrado
+        "cm²": 100,               // Centímetro cuadrado
+        "m²": 10000,              // Metro cuadrado
+        "ha": 100000000,          // Hectárea (10,000 metros cuadrados)
+        "km²": 1000000000000,     // Kilómetro cuadrado (1,000,000 metros cuadrados)
+        "in²": 645.16,            // Pulgada cuadrada
+        "ft²": 929.0304,          // Pie cuadrado
+        "yd²": 8361.27,           // Yarda cuadrada
+        "ac": 4046.86,            // Acre (4,046.86 metros cuadrados)
+        "mi²": 2589988.11         // Milla cuadrada (2,589,988.11 metros cuadrados)
+    };
+
+    if (!(origen in conversiones) || !(destino in conversiones)) {
+        resultadoDiv.textContent = "Unidades no válidas.";
+        return;
+    }
+
+    // Convertir valor de la unidad de origen a milímetros cuadrados y luego convertir a la unidad destino
+    let resultado = (valor * conversiones[origen]) / conversiones[destino];
+    resultadoDiv.textContent = `Resultado: ${resultado} ${destino}`;
+}
+
+function convertirEnergia() {
+    const origen = document.getElementById("selectOrigen").value;
+    const destino = document.getElementById("selectDestino").value;
+    const valor = parseFloat(document.getElementById("valor").value);
+    const resultadoDiv = document.getElementById("resultado");
+
+    if (isNaN(valor)) {
+        resultadoDiv.textContent = "Ingrese un valor válido.";
+        return;
+    }
+
+    const conversiones = {
+        "J": 1,                      // Julio (unidad base)
+        "kJ": 1000,                  // Kilojulio
+        "cal": 4.184,                // Caloría
+        "kcal": 4184,                // Kilocaloría
+        "Wh": 3600,                  // Vatio-hora
+        "kWh": 3600000,              // Kilovatio-hora
+        "eV": 1.60218e-19,           // Electronvoltio
+        "BTU": 1055.06               // BTU
+    };
+
+    if (!(origen in conversiones) || !(destino in conversiones)) {
+        resultadoDiv.textContent = "Unidades no válidas.";
+        return;
+    }
+
+    // Convertir valor de la unidad de origen a julios y luego convertir a la unidad destino
+    let resultado = (valor * conversiones[origen]) / conversiones[destino];
+    resultadoDiv.textContent = `Resultado: ${resultado} ${destino}`;
+}
+
+
+
+
+
 
 
 
